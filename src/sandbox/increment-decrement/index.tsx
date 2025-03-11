@@ -13,6 +13,7 @@ export default function(){
         <div>
             <div>{count}</div>
             <button>Increment</button>
+            
             <button>Decrement</button>
         </div>
     )
