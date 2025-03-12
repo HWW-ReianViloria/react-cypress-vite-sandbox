@@ -22,7 +22,7 @@ export default function(){
             <input test-id='add item' type="text" onChange={(e) => setFormData(e.target.value)} placeholder="Add a new item" value={formData}/>
             <button onClick={() => addItemHandler<typeof items[0], typeof formData>(formData, setItems, setFormData)}>Add a new item</button>
             <ul>
-                {items.map(item => <li>{item}</li>)}
+                {items.map((item, index) => <li key={'items-'+index}>{item}</li>)}
             </ul>
         </div>
     )
