@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import RoundedInput, { type InputValue } from '../../components/RoundedInput';
+import RoundedInput, {
+    type InputValue,
+} from '../../components/misc/RoundedInput';
 import { v4 as uuid } from 'uuid';
 
 interface Todo {
