@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { useReducer } from 'react';
 import {
     AppContext,
     AppContextType,
@@ -30,8 +30,24 @@ const appReducer = (state: AppState, action: UserAction): AppState => {
                 todo: {
                     ...state.todo,
                     items: state.todo.items.filter(
-                        (todoItem) => todoItem.id !== action.payload
+                        (todoItem) => todoItem.id !== action.payload,
                     ),
+                },
+            };
+        case TodoActions.TOGGLE_ITEM:
+            return {
+                ...state,
+                todo: {
+                    ...state.todo,
+                    items: state.todo.items.map((item) => {
+                        if (item.id === action.payload) {
+                            return {
+                                ...item,
+                                isCompleted: !item.isCompleted,
+                            };
+                        }
+                        return item;
+                    }),
                 },
             };
         case TodoActions.FILTER:
@@ -39,7 +55,7 @@ const appReducer = (state: AppState, action: UserAction): AppState => {
             const filterKeys = Object.keys(Filters) as (keyof typeof Filters)[];
 
             const currentIndex = Object.values(Filters).findIndex(
-                (filterValue) => filterValue === currentFilter
+                (filterValue) => filterValue === currentFilter,
             );
 
             const nextIndex =

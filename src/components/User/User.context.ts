@@ -6,7 +6,7 @@ interface User {
     email?: string;
 }
 
-interface TodoItem {
+export interface TodoItemType {
     id: string;
     description: InputValue;
     isCompleted: boolean;
@@ -15,7 +15,7 @@ interface TodoItem {
 export interface AppState {
     user: User | undefined;
     todo: {
-        items: TodoItem[];
+        items: TodoItemType[];
         filter: Filters;
     };
 }
@@ -27,6 +27,7 @@ export enum UserActions {
 export enum TodoActions {
     ADD_ITEM = 'ADD ITEM',
     REMOVE_ITEM = 'REMOVE ITEM',
+    TOGGLE_ITEM = 'TOGGLE ITEM',
     FILTER = 'FILTER',
 }
 
@@ -46,15 +47,16 @@ export const AppContext = createContext<AppContextType | null>(null);
 export type UserAction =
     | { type: UserActions.LOGIN; payload: User }
     | { type: UserActions.LOGOUT }
-    | { type: TodoActions.ADD_ITEM; payload: TodoItem }
-    | { type: TodoActions.REMOVE_ITEM; payload: string }
+    | { type: TodoActions.ADD_ITEM; payload: TodoItemType }
+    | { type: TodoActions.REMOVE_ITEM; payload: TodoItemType['id'] }
+    | { type: TodoActions.TOGGLE_ITEM; payload: TodoItemType['id'] }
     | { type: TodoActions.FILTER };
 
 export const useAppContext = () => {
     const context = useContext(AppContext);
     if (context === null) {
         throw new Error(
-            'User context must be used within its context provider'
+            'User context must be used within its context provider',
         );
     }
     return context;
