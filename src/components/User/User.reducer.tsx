@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import {
     AppContext,
-    AppContextType,
+    type AppContextType,
     Filters,
     TodoActions,
     UserActions,

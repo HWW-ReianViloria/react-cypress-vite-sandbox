@@ -11,6 +11,7 @@ export default function TodoItem({
     description,
     isCompleted,
 }: TodoCardProps) {
+    // console.log('a')
     const { dispatch } = useAppContext();
 
     return (

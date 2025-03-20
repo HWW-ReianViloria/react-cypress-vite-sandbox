@@ -5,8 +5,8 @@ import RoundedInput, {
 import { v4 as uuid } from 'uuid';
 import {
     TodoActions,
-    TodoItemType,
     useAppContext,
+    type TodoItemType,
 } from '../../components/User/User.context';
 import TodoList from './TodoList';
 
