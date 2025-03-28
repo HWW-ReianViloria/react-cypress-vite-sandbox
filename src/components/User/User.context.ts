@@ -1,9 +1,9 @@
 import { createContext, useContext } from 'react';
 import { InputValue } from '../misc/RoundedInput';
 
-interface User {
-    name?: string;
-    email?: string;
+export interface User {
+    name: string;
+    email: string;
 }
 
 export interface TodoItemType {
